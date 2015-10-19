@@ -2,11 +2,12 @@
 #   data/crontab.jsonの定時処理を実行
 #
 # Commands:
-#   hubot crontab list - トピックに設定されたcronを表示
+#   hubot crontab - チャンネルに設定されたcronを表示
 
 cronJob = require('cron').CronJob
 fs = require('fs')
 props = require('props')
+table = require('easy-table')
 
 class Job
   constructor: (room, pattern, message, robot) ->
@@ -22,9 +23,6 @@ class Job
     @cronjob.start()
   say: (robot) ->
     robot.send({ room: @room }, @message)
-
-crontabFmt = (item) ->
-  return "#{item.pattern}: #{item.message.replace '\n', ' '}"
 
 module.exports = (robot) ->
   ERR_MSG = 'crontabファイルが設置されていません。'
@@ -44,15 +42,17 @@ module.exports = (robot) ->
     job = new Job(room, cron[1], cron[2], robot)
     jobs.push(job)
 
-  robot.respond /crontab\s+list$/i, (msg) ->
+  robot.respond /crontab$/i, (msg) ->
     json = loadJSON()
     unless json
       return msg.reply(ERR_MSG)
     room = String(msg.message.room)
-    list = []
+    t = new table
     for job in jobs
       if job.room is room
-        list.push(crontabFmt(job))
+        t.cell('Pattern', item.pattern)
+        t.cell('Message', item.message.replace('\n', ' '))
+        t.newRow()
     if list.length > 0
-      return msg.reply('\n```\n' + list.join('\n') + '\n```')
+      return msg.reply('\n```\n' + t.print().trim() + '\n```')
     msg.reply(NIL_MSG)
