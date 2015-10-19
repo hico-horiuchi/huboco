@@ -9,6 +9,7 @@
 fs = require('fs')
 moment = require('moment')
 props = require('props')
+table = require('easy-table')
 
 module.exports = (robot) ->
   ERR_MSG = 'ゼミの日時が設定されていません。'
@@ -55,22 +56,25 @@ module.exports = (robot) ->
     unless json
       return msg.reply(ERR_MSG)
     date = nextSemi(json.day)
-    list = []
+    t = new table
     for i in [0..3]
       change = checkChange(date, json.changes)
       rotate = checkRotate(date, json.presen.start_at, json.presen.rotate)
-      str = "#{change ? dateFormat(date, json.start_at, json.end_at)} (#{json.presen.users[rotate].join(', ')})"
-      list.push(str)
+      t.cell('Date', change ? dateFormat(date, json.start_at, json.end_at))
+      t.cell('Presenter', json.presen.users[rotate].join(', '))
+      t.newRow()
       date.add(1, 'weeks')
-    msg.reply('```\n' + list.join('\n') + '\n```')
+    msg.reply('```\n' + t.print().trim() + '\n```')
 
   robot.respond /semi\s+changes$/i, (msg) ->
     json = loadJSON()
     unless json
       return msg.reply(ERR_MSG)
-    list = []
+    t = new table
     for i in json.changes
-      list.push("#{i.from} → #{i.to}")
-    if list.length > 0
-      msg.reply('```\n' + list.join('\n') + '\n```')
+      t.cell('From', i.from)
+      t.cell('To', '→ ' +i.to )
+      t.newRow()
+    if t.rows.length > 0
+      msg.reply('```\n' + t.print().trim() + '\n```')
     msg.reply(NIL_MSG)
