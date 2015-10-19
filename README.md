@@ -33,7 +33,7 @@ Herokuでの簡単な導入説明。
     </tr>
     <tr>
       <td><tt>crontab.coffee</tt></td>
-      <td><tt>crontab list</tt></td>
+      <td><tt>crontab</tt></td>
       <td>トピックに設定されたcronを表示</td>
     </tr>
     <tr>
