@@ -50,9 +50,9 @@ module.exports = (robot) ->
     t = new table
     for job in jobs
       if job.room is room
-        t.cell('Pattern', item.pattern)
-        t.cell('Message', item.message.replace('\n', ' '))
+        t.cell('Pattern', job.pattern)
+        t.cell('Message', job.message.replace('\n', ' '))
         t.newRow()
-    if list.length > 0
+    if t.rows.length > 0
       return msg.reply('\n```\n' + t.print().trim() + '\n```')
     msg.reply(NIL_MSG)
