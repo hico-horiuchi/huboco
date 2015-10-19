@@ -31,7 +31,7 @@ module.exports = (robot) ->
       .http('https://api.apigw.smt.docomo.ne.jp/dialogue/v1/dialogue')
       .query(APIKEY: apiKey)
       .header('Content-Type', 'application/json')
-      .post(JSON.stringify(status))(err, res, body) ->
+      .post(JSON.stringify(status)) (err, res, body) ->
         if err?
           res.reply("#{ERR_MSG}\n```\n#{err}\n```")
         else
