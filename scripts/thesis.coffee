@@ -21,7 +21,7 @@ module.exports = (robot) ->
     catch err
       return false
 
-  deadLineDays = (room) ->
+  deadLineDays = () ->
     json = loadJSON()
     return false unless json
     str = []
@@ -33,8 +33,8 @@ module.exports = (robot) ->
         str.push("#{THESIS_JP[key]}の締切まで #{days} 日")
     return str.join('、') + 'です。'
 
-  deadLineDate = (room) ->
-    json = loadJSON(room)
+  deadLineDate = () ->
+    json = loadJSON()
     return false unless json
     str = []
     for key in THESIS
@@ -44,11 +44,11 @@ module.exports = (robot) ->
     return str.join('、') + 'です。'
 
   robot.respond /thesis$/i, (msg) ->
-    str = deadLineDate(msg.message.room)
+    str = deadLineDate()
     msg.reply(str) if str
     msg.reply(ERR_MSG) unless str
 
   robot.respond /thesis\s+days$/i, (msg) ->
-    str = deadLineDays(msg.message.room)
+    str = deadLineDays()
     msg.reply(str) if str
     msg.reply(ERR_MSG) unless str

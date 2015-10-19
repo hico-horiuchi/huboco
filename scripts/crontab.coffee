@@ -27,8 +27,8 @@ crontabFmt = (item) ->
   return "#{item.pattern}: #{item.message.replace '\n', ' '}"
 
 module.exports = (robot) ->
-  ERR_MSG = ':confounded: 情報の取得に失敗'
-  NIL_MSG = ':expressionless: 結果なし'
+  ERR_MSG = 'crontabファイルが設置されていません。'
+  NIL_MSG = '結果はありません。'
 
   loadJSON = ->
     try
@@ -40,7 +40,8 @@ module.exports = (robot) ->
   json = loadJSON()
   jobs = []
   for cron, i in json.crontab
-    job = new Job(cron[0], cron[1], cron[2], robot)
+    room = cron[0].replace(/^#/, '')
+    job = new Job(room, cron[1], cron[2], robot)
     jobs.push(job)
 
   robot.respond /crontab\s+list$/i, (msg) ->
