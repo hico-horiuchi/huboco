@@ -31,7 +31,7 @@ module.exports = (robot) ->
         return msg.reply(ERR_MSG)
       animes = JSON.parse(body)
       t = new table
-      animes.forEach (anime) ->
+      for anime in animes
         t.cell('Twitter', '@' + anime.twitter_account)
         t.cell('Title', anime.title)
         t.newRow()
@@ -48,7 +48,7 @@ module.exports = (robot) ->
       animes = JSON.parse(body)
       pattern = new RegExp(keyword, 'i')
       t = new table
-      animes.forEach (anime) ->
+      for anime in animes
         if anime.title.search(pattern) >= 0
           t.cell('Twitter', '@' + anime.twitter_account)
           t.cell('Title', anime.title)

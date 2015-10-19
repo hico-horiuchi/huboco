@@ -13,7 +13,7 @@ module.exports = (robot) ->
   say = (room, message) ->
     robot.send({ room: room }, message)
 
-  loadJSON = () ->
+  loadJSON = ->
     json = fs.readFileSync("./data/semi.json", 'utf8')
     return props(json)
 

@@ -14,12 +14,13 @@ module.exports = (robot) ->
     cmds = robot.helpCommands()
     filter = msg.match[1]
     if filter
-      cmds = cmds.filter (cmd) ->
-        cmd.match(new RegExp(filter, 'i'))
+      cmds = for cmd in cmds
+        continue unless cmd.match(new RegExp(filter, 'i'))
+        cmd
       if cmds.length is 0
         return msg.reply(NIL_MSG)
     t = new table
-    cmds.forEach (cmd) ->
+    for cmd in cmds
       cmd = cmd.replace(/^hubot/i, robot.name.toLowerCase())
       arr = cmd.split(' - ')
       t.cell('Command', arr[0])

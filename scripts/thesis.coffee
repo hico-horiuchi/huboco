@@ -14,14 +14,14 @@ module.exports = (robot) ->
   THESIS = ['bachelor', 'master']
   THESIS_JP = { bachelor: '卒論', master: '修論' }
 
-  loadJSON = () ->
+  loadJSON = ->
     try
       json = fs.readFileSync("./data/thesis.json", 'utf8')
       return props(json)
     catch err
       return false
 
-  deadLineDays = () ->
+  deadLineDays = ->
     json = loadJSON()
     return false unless json
     str = []
@@ -33,7 +33,7 @@ module.exports = (robot) ->
         str.push("#{THESIS_JP[key]}の締切まで #{days} 日")
     return str.join('、') + 'です。'
 
-  deadLineDate = () ->
+  deadLineDate = ->
     json = loadJSON()
     return false unless json
     str = []

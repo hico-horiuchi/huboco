@@ -14,7 +14,7 @@ module.exports = (robot) ->
   ERR_MSG = 'ゼミの日時が設定されていません。'
   NIL_MSG = '結果はありません。'
 
-  loadJSON = () ->
+  loadJSON = ->
     try
       json = fs.readFileSync("./data/semi.json", 'utf8')
       return props(json)
