@@ -1,0 +1,33 @@
+{
+  "name": "huboco",
+  "description": "あなたの研究生活をサポートするHubot",
+  "version": "2.16.0",
+  "author": "hico-horiuchi",
+  "license": "MIT",
+  "private": true,
+  "keywords": [
+    "github",
+    "hubot",
+    "slack",
+    "bot"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hico-horiuchi/huboco.git"
+  },
+  "dependencies": {
+    "cron": ">= 1.0.x",
+    "easy-table": ">= 1.0.x",
+    "hubot": ">= 2.16.x",
+    "hubot-heroku-keepalive": ">= 0.0.x",
+    "hubot-ping": "git://github.com/bouzuya/hubot-ping.git",
+    "hubot-slack": ">= 3.4.x",
+    "moment": ">= 2.10.x",
+    "props": ">= 0.3.x",
+    "request": ">= 2.62.x"
+  },
+  "engines": {
+    "node": ">= 0.12.x",
+    "npm": ">= 3.3.x"
+  }
+}

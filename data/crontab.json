@@ -1,0 +1,6 @@
+{
+  "crontab": [
+    ["member", "0 0 19 * * 5", "@mizobuchi @ryotas @shirota @morigaki 20:00からサーバーアップデートします。"],
+    ["member", "0 0 10 2 10 *", "@hiconyan @mizobuchi 明日は9～14時に計画停電です。"]
+  ]
+}
