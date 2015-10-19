@@ -10,7 +10,7 @@ Slackの研究室チームでの利用を目的に、研究のお手伝いがで
 Herokuでの簡単な導入説明。
 
     $ heroku create --stack cedar huboco
-    $ heroku config:set HUBOT_HEROKU_KEEPALIVE_URL=$(heroku apps:info -s  | grep web_url | cut -d= -f2)
+    $ heroku config:set HUBOT_HEROKU_KEEPALIVE_URL=$(heroku apps:info -s  | grep web-url | cut -d= -f2)
     $ heroku config:set HUBOT_PING_PATH="/huboco/ping"
     $ heroku config:set HUBOT_SLACK_TOKEN=""
     $ heroku config:set HUBOT_SLACK_ADMIN_TOKEN=""
