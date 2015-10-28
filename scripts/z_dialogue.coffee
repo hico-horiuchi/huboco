@@ -8,7 +8,7 @@
 #   会話の継続。context, mode を保存。ただし3分経過したら破棄。
 
 module.exports = (robot) ->
-  ERR_MSG = ':confounded: 情報の取得に失敗'
+  ERR_MSG = 'docomo 雑談対話APIの呼出に失敗しました。'
   apiKey = process.env.HUBOT_DOCOMO_DIALOGUE_API_KEY
   status = { place: '香川' }
 
