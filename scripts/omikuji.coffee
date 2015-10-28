@@ -13,6 +13,6 @@ module.exports = (robot) ->
     url = "https://slack.com/api/users.info?token=#{robot.adapter.client.token}&user=#{member}"
     robot.http(url).get() (err, res, body) ->
       unless res.statusCode is 200
-        return msg.reply(ERR_MSG)
+        return msg.reply("#{ERR_MSG}\n```\n#{err}\n```")
       json = JSON.parse(body)
       msg.send "@#{json.user.name} さん、よろしくお願いします。"

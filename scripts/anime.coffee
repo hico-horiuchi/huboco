@@ -28,7 +28,7 @@ module.exports = (robot) ->
     url = "http://api.moemoe.tokyo/anime/v1/master#{cour()}"
     robot.http(url).get() (err, res, body) ->
       unless res.statusCode is 200
-        return msg.reply(ERR_MSG)
+        return msg.reply("#{ERR_MSG}\n```\n#{err}\n```")
       animes = JSON.parse(body)
       t = new table
       for anime in animes
@@ -44,7 +44,7 @@ module.exports = (robot) ->
     keyword = msg.match[1]
     robot.http(url).get() (err, res, body) ->
       unless res.statusCode is 200
-        return msg.reply(ERR_MSG)
+        return msg.reply("#{ERR_MSG}\n```\n#{err}\n```")
       animes = JSON.parse(body)
       pattern = new RegExp(keyword, 'i')
       t = new table
