@@ -1,5 +1,5 @@
 # Description:
-#   data/crontab.jsonの定時処理を実行
+#   data/crontab.json の定時処理を実行
 #
 # Commands:
 #   hubot crontab - チャンネルに設定されたcronを表示

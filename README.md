@@ -128,7 +128,7 @@ Herokuでの簡単な導入説明。
     </tr>
     <tr>
       <td><tt>semi_cron.coffee</tt></td>
-      <td>ゼミの前日10時に通知、発表者にリプライ</td>
+      <td>ゼミの前日9時に通知、発表者にリプライ</td>
     </tr>
  </tbody>
 </table>

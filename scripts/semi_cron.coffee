@@ -1,5 +1,9 @@
 # Description:
-#   ゼミの前日10時に通知、発表者にはリプライ
+#   ゼミの前日9時に通知、発表者にはリプライ
+#
+# Configuration:
+#   HUBOT_GITHUB_ACCESS_TOKEN
+#
 
 cronJob = require('cron').CronJob
 fs = require('fs')
