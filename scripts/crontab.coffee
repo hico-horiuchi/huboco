@@ -38,8 +38,8 @@ module.exports = (robot) ->
   json = loadJSON()
   jobs = []
   for cron, i in json.crontab
-    room = cron[0].replace(/^#/, '')
-    job = new Job(room, cron[1], cron[2], robot)
+    room = cron.room.replace(/^#/, '')
+    job = new Job(room, cron.pattern, cron.message, robot)
     jobs.push(job)
 
   robot.respond /crontab$/i, (msg) ->
