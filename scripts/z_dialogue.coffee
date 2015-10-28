@@ -9,7 +9,8 @@
 
 module.exports = (robot) ->
   ERR_MSG = 'docomo 雑談対話APIの呼出に失敗しました。'
-  apiKey = process.env.HUBOT_DOCOMO_DIALOGUE_API_KEY
+  API_KEY = process.env.HUBOT_DOCOMO_DIALOGUE_API_KEY
+
   status = { place: '香川' }
 
   cmds = []
@@ -18,7 +19,7 @@ module.exports = (robot) ->
     cmds.push(cmd) if cmds.indexOf(cmd) is -1
 
   robot.respond /(.+)$/i, (msg) ->
-    return unless apiKey
+    return unless API_KEY
     cmd = msg.match[1].split(' ')[0]
     return unless cmds.indexOf(cmd) is -1
     status['nickname'] = msg.envelope.user.name
@@ -29,7 +30,7 @@ module.exports = (robot) ->
       status['mode'] = ''
     msg
       .http('https://api.apigw.smt.docomo.ne.jp/dialogue/v1/dialogue')
-      .query(APIKEY: apiKey)
+      .query(APIKEY: API_KEY)
       .header('Content-Type', 'application/json')
       .post(JSON.stringify(status)) (err, res, body) ->
         if err?
