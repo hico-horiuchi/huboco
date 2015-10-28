@@ -34,9 +34,8 @@ module.exports = (robot) ->
       .header('Content-Type', 'application/json')
       .post(JSON.stringify(status)) (err, res, body) ->
         if err?
-          res.reply("#{ERR_MSG}\n```\n#{err}\n```")
-        else
-          msg.reply(JSON.parse(body).utt)
-          status['time'] = now
-          status['context'] = JSON.parse(body).context
-          status['mode'] = JSON.parse(body).mode
+          return res.reply("#{ERR_MSG}\n```\n#{err}\n```")
+        msg.reply(JSON.parse(body).utt)
+        status['time'] = now
+        status['context'] = JSON.parse(body).context
+        status['mode'] = JSON.parse(body).mode
