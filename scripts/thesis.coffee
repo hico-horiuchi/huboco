@@ -11,8 +11,6 @@ props = require('props')
 
 module.exports = (robot) ->
   ERR_MSG = '論文の締切が設定されていません。'
-  THESIS = ['bachelor', 'master']
-  THESIS_JP = { bachelor: '卒論', master: '修論' }
 
   loadJSON = ->
     try
@@ -23,32 +21,32 @@ module.exports = (robot) ->
 
   deadLineDays = ->
     json = loadJSON()
-    return false unless json
+    unless json
+      return false
     str = []
     today = moment()
-    for key in THESIS
-      date = json[key]
-      if date
-        days = parseInt((moment(date, 'YYYY/MM/DD') - today) / 86400000)
-        str.push("#{THESIS_JP[key]}の締切まで #{days} 日")
-    return str.join('、') + 'です。'
+    for thesis in json.thesis
+      days = parseInt((moment(thesis.date, 'YYYY/MM/DD') - today) / 86400000)
+      str.push("#{thesis.name} の締切まで #{days} 日")
+    return str.join('、 ') + 'です。'
 
   deadLineDate = ->
     json = loadJSON()
-    return false unless json
+    unless json
+      return false
     str = []
-    for key in THESIS
-      date = json[key]
-      if date
-        str.push("#{THESIS_JP[key]}の締切は #{date} ")
-    return str.join('、') + 'です。'
+    for thesis in json.thesis
+      str.push("#{thesis.name} の締切は #{thesis.date} ")
+    return str.join('、 ') + 'です。'
 
   robot.respond /thesis$/i, (msg) ->
     str = deadLineDate()
-    msg.reply(str) if str
-    msg.reply(ERR_MSG) unless str
+    unless str
+      return msg.reply(ERR_MSG)
+    msg.reply(str)
 
   robot.respond /thesis\s+days$/i, (msg) ->
     str = deadLineDays()
-    msg.reply(str) if str
-    msg.reply(ERR_MSG) unless str
+    unless str
+      return msg.reply(ERR_MSG)
+    msg.reply(str)

@@ -15,9 +15,6 @@ urler = require('url')
 module.exports = (robot) ->
   ROOM = 'member'
 
-  say = (room, message) ->
-    robot.send({ room: room }, message)
-
   formPage = (name) ->
     """
 <!DOCTYPE html>
@@ -237,5 +234,5 @@ module.exports = (robot) ->
       json = JSON.parse(body)
       unless json.ok
         return call.end(errorPage(json.error))
-      say(ROOM, "#{email} をチームに招待しました。")
+      robot.send({ room: ROOM }, "#{email} をチームに招待しました。")
       call.end(submitPage(name, email))

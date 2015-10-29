@@ -19,9 +19,11 @@ module.exports = (robot) ->
     cmds.push(cmd) if cmds.indexOf(cmd) is -1
 
   robot.respond /(.+)$/i, (msg) ->
-    return unless API_KEY
+    unless API_KEY
+      return
     cmd = msg.match[1].split(' ')[0]
-    return unless cmds.indexOf(cmd) is -1
+    unless cmds.indexOf(cmd) is -1
+      return
     status['nickname'] = msg.envelope.user.name
     status['utt'] = msg.match[1]
     now = new Date().getTime()
@@ -34,7 +36,7 @@ module.exports = (robot) ->
       .header('Content-Type', 'application/json')
       .post(JSON.stringify(status)) (err, res, body) ->
         if err?
-          return res.reply("#{ERR_MSG}\n```\n#{err}\n```")
+          return msg.reply("#{ERR_MSG}\n```\n#{err}\n```")
         msg.reply(JSON.parse(body).utt)
         status['time'] = now
         status['context'] = JSON.parse(body).context

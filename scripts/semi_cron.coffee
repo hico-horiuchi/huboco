@@ -14,9 +14,6 @@ module.exports = (robot) ->
   ROOM = 'member'
   NTF_MSG = '明日は全体ゼミです。'
 
-  say = (room, message) ->
-    robot.send({ room: room }, message)
-
   loadJSON = ->
     try
       json = fs.readFileSync("./data/semi.json", 'utf8')
@@ -27,7 +24,8 @@ module.exports = (robot) ->
   nextSemi = (day) ->
     date = moment()
     for i in [0..6]
-      break if date.day() is day
+      if date.day() is day
+        break
       date.add(1, 'days')
     return date
 
@@ -56,7 +54,7 @@ module.exports = (robot) ->
       if next is tomorrow
         rotate = checkRotate(date, json.presen.start_at, json.presen.rotate)
         str = "#{NTF_MSG}\n#{json.presen.accounts[rotate].join(' さん、')} さんが発表です。"
-        say(ROOM, str)
+        robot.send({ room: ROOM }, str)
     start: true
     timeZone: 'Asia/Tokyo'
   })

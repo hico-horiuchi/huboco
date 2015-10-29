@@ -2,10 +2,10 @@
   "crontab": [{
     "room": "member",
     "pattern": "0 0 19 * * 5",
-    "message": "@mizobuchi @ryotas @shirota @morigaki 20:00からサーバーアップデートします。"
+    "message": "<!everyone>: 20:00からサーバーアップデートします。"
   }, {
     "room": "member",
     "pattern": "0 0 10 2 10 *",
-    "message": "@hiconyan @mizobuchi 明日は9～14時に計画停電です。"
+    "message": "<!everyone>: 明日は9～14時に計画停電です。"
   }]
 }

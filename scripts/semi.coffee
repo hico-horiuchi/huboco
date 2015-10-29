@@ -25,7 +25,8 @@ module.exports = (robot) ->
   nextSemi = (day) ->
     date = moment()
     for i in [0..6]
-      break if date.day() is day
+      if date.day() is day
+        break
       date.add(1, 'days')
     return date
 
@@ -35,7 +36,8 @@ module.exports = (robot) ->
   checkChange = (date, changes) ->
     from = date.format('YYYY/MM/DD')
     for i in changes
-      return i.to if i.from is from
+      if i.from is from
+        return i.to
 
   checkRotate = (date, startAt, rotate) ->
     start = moment(startAt, 'YYYY/MM/DD')
