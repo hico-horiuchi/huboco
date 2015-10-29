@@ -25,7 +25,7 @@ module.exports = (robot) ->
     <meta content="width=device-width, initial-scale=1" name="viewport" />
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" />
     <link href="//maxcdn.bootstrapcdn.com/bootswatch/3.3.5/lumen/bootstrap.min.css" rel="stylesheet" />
-    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet" />
     <link href="//fonts.googleapis.com/css?family=Exo:400,600" rel="stylesheet" />
     <link href="//raw.githubusercontent.com/hico-horiuchi/huboco/master/data/favicon.ico" rel="shortcut icon" />
     <style type="text/css"><!--
@@ -88,7 +88,7 @@ module.exports = (robot) ->
     <meta content="width=device-width, initial-scale=1" name="viewport" />
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" />
     <link href="//maxcdn.bootstrapcdn.com/bootswatch/3.3.5/lumen/bootstrap.min.css" rel="stylesheet" />
-    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet" />
     <link href="//fonts.googleapis.com/css?family=Exo:400,600" rel="stylesheet" />
     <link href="//raw.githubusercontent.com/hico-horiuchi/huboco/master/data/favicon.ico" rel="shortcut icon" />
     <style type="text/css"><!--
@@ -154,7 +154,7 @@ module.exports = (robot) ->
     <meta content="width=device-width, initial-scale=1" name="viewport" />
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" />
     <link href="//maxcdn.bootstrapcdn.com/bootswatch/3.3.5/lumen/bootstrap.min.css" rel="stylesheet" />
-    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet" />
     <link href="//fonts.googleapis.com/css?family=Exo:400,600" rel="stylesheet" />
     <link href="//raw.githubusercontent.com/hico-horiuchi/huboco/master/data/favicon.ico" rel="shortcut icon" />
     <style type="text/css"><!--
