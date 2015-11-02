@@ -5,7 +5,7 @@
     "message": "<!everyone>: 20:00からサーバーアップデートします。"
   }, {
     "room": "member",
-    "pattern": "0 0 10 2 10 *",
-    "message": "<!everyone>: 明日は9～14時に計画停電です。"
+    "pattern": "0 0 19 14 11 *",
+    "message": "<!everyone>: 明日は12:30から卒業記念アルバム撮影です。"
   }]
 }
