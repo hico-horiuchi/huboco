@@ -19,7 +19,6 @@
     "cron": ">= 1.0.x",
     "easy-table": ">= 1.0.x",
     "hubot": ">= 2.16.x",
-    "hubot-heroku-keepalive": ">= 0.0.x",
     "hubot-ping": "git://github.com/bouzuya/hubot-ping.git",
     "hubot-slack": ">= 3.4.x",
     "moment": ">= 2.10.x",
