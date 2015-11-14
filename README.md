@@ -15,7 +15,10 @@ Herokuでの簡単な導入説明。
     $ heroku config:set HUBOT_SLACK_TOKEN=""
     $ heroku config:set HUBOT_SLACK_ADMIN_TOKEN=""
     $ heroku config:set HUBOT_DOCOMO_DIALOGUE_API_KEY=""
-    $ heroku config:add TZ=Asia/Tokyo
+    $ heroku config:set HUBOT_IMGUR_ALBUM_ID=""
+    $ heroku config:set HUBOT_IMGUR_CLIENT_ID=""
+    $ heroku config:set HUBOT_GITHUB_ACCESS_TOKEN=""
+    $ heroku config:set TZ=Asia/Tokyo
     $ git push heroku master
 
 ## Commands
@@ -35,6 +38,11 @@ Herokuでの簡単な導入説明。
       <td><tt>crontab.coffee</tt></td>
       <td><tt>crontab</tt></td>
       <td>トピックに設定されたcronを表示</td>
+    </tr>
+    <tr>
+      <td><tt>github.coffee</tt></td>
+      <td><tt>gh &lt;user&gt;/&lt;repo&gt; &lt;id&gt;</tt></td>
+      <td>リポジトリのIssueまたはPull Requestの情報を表示</td>
     </tr>
     <tr>
       <td rowspan="2"><tt>help.coffee</tt></td>
@@ -61,6 +69,15 @@ Herokuでの簡単な導入説明。
     <tr>
       <td><tt>time</tt></td>
       <td>現在の時刻を表示</td>
+    </tr>
+    <tr>
+      <td rowspan="2"><tt>lgtm.coffee</tt></td>
+      <td><tt>lgtm</tt></td>
+      <td><a href="https://imgur.com/" target="_blank">Imgur</a>の<tt>HUBOT_IMGUR_ALBUM_ID</tt>からLGTM画像を送信</td>
+    </tr>
+    <tr>
+      <td><tt>lgtm &lt;user&gt;/&lt;repo&gt; &lt;id&gt;</tt></td>
+      <td>リポジトリのIssueまたはPull RequestにLGTM画像をコメント</td>
     </tr>
     <tr>
       <td><tt>omikuji.coffee</tt></td>
