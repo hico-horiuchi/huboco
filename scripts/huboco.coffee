@@ -21,10 +21,10 @@ module.exports = (robot) ->
     msg.reply('おやすみなさい。')
 
   robot.respond /version$/i, (msg) ->
-    msg.reply("多分、私は #{robot.version} 人目だと思うから。")
+    msg.reply("多分、私は *#{robot.version}* 人目だと思うから。")
 
   robot.respond /date$/i, (msg) ->
-    msg.reply("#{moment().locale('ja').format('YYYY/MM/DD(ddd)')} です。")
+    msg.reply("*#{moment().locale('ja').format('YYYY/MM/DD(ddd)')}* です。")
 
   robot.respond /time$/i, (msg) ->
-    msg.reply("#{moment().format('HH:mm:ss')} です。")
+    msg.reply("*#{moment().format('HH:mm:ss')}* です。")

@@ -24,12 +24,12 @@ module.exports = (robot) ->
     cmd = msg.match[1].split(' ')[0]
     unless cmds.indexOf(cmd) is -1
       return
-    status['nickname'] = msg.envelope.user.name
-    status['utt'] = msg.match[1]
+    status.nickname = msg.envelope.user.name
+    status.utt = msg.match[1]
     now = new Date().getTime()
-    if now - status['time'] > 3 * 60 * 1000
-      status['context'] = ''
-      status['mode'] = ''
+    if now - status.time > 3 * 60 * 1000
+      status.context = ''
+      status.mode = ''
     msg
       .http('https://api.apigw.smt.docomo.ne.jp/dialogue/v1/dialogue')
       .query(APIKEY: API_KEY)
@@ -38,6 +38,6 @@ module.exports = (robot) ->
         if err?
           return msg.reply("#{ERR_MSG}\n```\n#{err}\n```")
         msg.reply(JSON.parse(body).utt)
-        status['time'] = now
-        status['context'] = JSON.parse(body).context
-        status['mode'] = JSON.parse(body).mode
+        status.time = now
+        status.context = JSON.parse(body).context
+        status.mode = JSON.parse(body).mode

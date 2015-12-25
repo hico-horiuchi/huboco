@@ -55,9 +55,9 @@ module.exports = (robot) ->
       token: process.env.HUBOT_GITHUB_ACCESS_TOKEN
     })
     github.issues.getRepoIssue({
-      user: args['user']
-      repo: args['repo']
-      number: Number(args['id'])
+      user: args.user
+      repo: args.repo
+      number: Number(args.id)
     }, (err, res) ->
       if err?
         return msg.reply("#{ERR_MSG}\n```\n#{err}\n```")

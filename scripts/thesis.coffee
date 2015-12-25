@@ -27,7 +27,7 @@ module.exports = (robot) ->
     today = moment()
     for thesis in json.thesis
       days = parseInt((moment(thesis.date, 'YYYY/MM/DD') - today) / 86400000)
-      str.push("#{thesis.name} の締切まで #{days} 日")
+      str.push("#{thesis.name}の締切まであと *#{days}* 日")
     return str.join('、 ') + 'です。'
 
   deadLineDate = ->
@@ -36,7 +36,7 @@ module.exports = (robot) ->
       return false
     str = []
     for thesis in json.thesis
-      str.push("#{thesis.name} の締切は #{thesis.date} ")
+      str.push("#{thesis.name}の締切は *#{thesis.date}* ")
     return str.join('、 ') + 'です。'
 
   robot.respond /thesis$/i, (msg) ->

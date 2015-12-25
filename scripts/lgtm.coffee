@@ -10,8 +10,6 @@
 #   hubot lgtm                    - Imgur の HUBOT_IMGUR_ALBUM_ID からLGTM画像を送信
 #   hubot lgtm <user>/<repo> <id> - リポジトリのIssueまたはPull RequestにLGTM画像をコメント
 
-fs = require('fs')
-props = require('props')
 githubAPI = require('node-github')
 
 module.exports = (robot) ->
@@ -28,11 +26,11 @@ module.exports = (robot) ->
         images = JSON.parse(body).data
         if images.length is 0
           return msg.reply(NIL_MSG)
-        args['image'] = images[Math.random() * images.length | 0]
-        return args['callbacks'].shift()(msg, args)
+        args.image = images[Math.random() * images.length | 0]
+        return args.callbacks.shift()(msg, args)
 
   sendLGTM = (msg, args) ->
-    msg.send(args['image'].link)
+    msg.send(args.image.link)
 
   issuesCreateComment = (msg, args) ->
     github = new githubAPI({
@@ -43,10 +41,10 @@ module.exports = (robot) ->
       token: process.env.HUBOT_GITHUB_ACCESS_TOKEN
     })
     github.issues.createComment({
-      user: args['user']
-      repo: args['repo']
-      number: Number(args['id'])
-      body: "![#{args['image'].id}](#{args['image'].link})\nFrom [#{robot.name}](http://#{robot.name}.hiconyan.com/#{robot.name}/info) by #{msg.message.user.name}."
+      user: args.user
+      repo: args.repo
+      number: Number(args.id)
+      body: "![#{args.image.id}](#{args.image.link})\nFrom [#{robot.name}](http://#{robot.name}.hiconyan.com/#{robot.name}/info) by #{msg.message.user.name}."
     }, (err, res) ->
       if err?
         return msg.reply("GitHub #{ERR_MSG}\n```\n#{err}\n```")

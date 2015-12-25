@@ -51,7 +51,7 @@ module.exports = (robot) ->
     date = nextSemi(json.day)
     change = checkChange(date, json.changes)
     rotate = checkRotate(date, json.presen.start_at, json.presen.rotate)
-    msg.reply("#{change ? dateFormat(date, json.start_at, json.end_at)} で #{json.presen.users[rotate].join(' さん、')} さんが発表です。")
+    msg.reply("*#{change ? dateFormat(date, json.start_at, json.end_at)}* で #{json.presen.users[rotate].join(' さん、')} さんが発表です。")
 
   robot.respond /semi\s+list$/i, (msg) ->
     json = loadJSON()
