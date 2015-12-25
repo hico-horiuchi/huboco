@@ -17,7 +17,7 @@ module.exports = (robot) ->
 
   loadJSON = ->
     try
-      json = fs.readFileSync("./data/semi.json", 'utf8')
+      json = fs.readFileSync('./data/semi.json', 'utf8')
       return props(json)
     catch err
       return false
