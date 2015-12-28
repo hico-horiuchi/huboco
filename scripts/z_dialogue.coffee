@@ -19,7 +19,7 @@ module.exports = (robot) ->
     cmds.push(cmd) if cmds.indexOf(cmd) is -1
 
   robot.respond /(.+)$/i, (msg) ->
-    unless API_KEY
+    unless API_KEY?
       return
     cmd = msg.match[1].split(' ')[0]
     unless cmds.indexOf(cmd) is -1
@@ -35,7 +35,7 @@ module.exports = (robot) ->
       .query(APIKEY: API_KEY)
       .header('Content-Type', 'application/json')
       .post(JSON.stringify(status)) (err, res, body) ->
-        if err?
+        if err? or res.statusCode isnt 200
           return msg.reply("#{ERR_MSG}\n```\n#{err}\n```")
         msg.reply(JSON.parse(body).utt)
         status.time = now

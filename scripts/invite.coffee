@@ -207,10 +207,13 @@ module.exports = (robot) ->
   robot.router.get '/slack/form', (req, call) ->
     options = {
       url: 'https://slack.com/api/team.info'
-      qs:
+      qs: {
         'token': process.env.HUBOT_SLACK_ADMIN_TOKEN
+      }
     }
     request.get options, (err, res, body) ->
+      if err? or res.statusCode isnt 200
+        return call.send(err)
       json = JSON.parse(body)
       unless json.ok
         return call.send(json.error)
@@ -221,16 +224,18 @@ module.exports = (robot) ->
     payload = req.body
     name = payload.name
     email = payload.email
-    unless email
+    unless email?
       return call.send(400)
     options = {
-      url: "https://slack.com/api/users.admin.invite"
+      url: 'https://slack.com/api/users.admin.invite'
       qs:
         'token': process.env.HUBOT_SLACK_ADMIN_TOKEN
         'email': email
         'set_active': true
     }
     request.post options, (err, res, body) ->
+      if err? or res.statusCode isnt 200
+        return call.send(err)
       json = JSON.parse(body)
       unless json.ok
         return call.end(errorPage(json.error))

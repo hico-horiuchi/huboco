@@ -21,7 +21,7 @@ module.exports = (robot) ->
       .http("https://api.imgur.com/3/album/#{process.env.HUBOT_IMGUR_ALBUM_ID}/images")
       .header('Authorization', "Client-ID #{process.env.HUBOT_IMGUR_CLIENT_ID}")
       .get() (err, res, body) ->
-        if err?
+        if err? or res.statusCode isnt 200
           return msg.reply("Imgur #{ERR_MSG}\n```\n#{err}\n```")
         images = JSON.parse(body).data
         if images.length is 0
