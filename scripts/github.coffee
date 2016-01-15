@@ -20,31 +20,31 @@ module.exports = (robot) ->
   }
 
   setAttachment = (issue) ->
-      attachment = {
-        fallback: "##{issue.number}: #{issue.title}"
-        title: "##{issue.number}: #{issue.title}"
-        title_link: issue.html_url
-        author_name: issue.user.login
-        author_link: issue.user.html_url
-        author_icon: issue.user.avatar_url
-        text: issue.body.replace(/!\[.+\]\(.+\)/, '').replace(/\[(.+)\]\((.+)\)/, '<$2|$1>')
-        color: stateColor[issue.state]
-        fields: [{
-          title: 'Updated at'
-          value: moment(issue.updated_at).locale('ja').format('YYYY/MM/DD hh:mm')
-          short: true
-        }]
-        mrkdwn_in: ['text']
-      }
-      if issue.assignee
-        attachment.fields.push({
-          title: 'Assignee'
-          value: "<#{issue.assignee.html_url}|#{issue.assignee.login}>"
-          short: true
-        })
-      images = issue.body.match(/!\[.+\]\((.+)\)/)
-      attachment.image_url = images[1] if images
-      return attachment
+    attachment = {
+      fallback: "##{issue.number}: #{issue.title}"
+      title: "##{issue.number}: #{issue.title}"
+      title_link: issue.html_url
+      author_name: issue.user.login
+      author_link: issue.user.html_url
+      author_icon: issue.user.avatar_url
+      text: issue.body.replace(/!\[.+\]\(.+\)/, '').replace(/\[(.+)\]\((.+)\)/, '<$2|$1>')
+      color: stateColor[issue.state]
+      fields: [{
+        title: 'Updated at'
+        value: moment(issue.updated_at).locale('ja').format('YYYY/MM/DD hh:mm')
+        short: true
+      }]
+      mrkdwn_in: ['text']
+    }
+    if issue.assignee
+      attachment.fields.push({
+        title: 'Assignee'
+        value: "<#{issue.assignee.html_url}|#{issue.assignee.login}>"
+        short: true
+      })
+    images = issue.body.match(/!\[.+\]\((.+)\)/)
+    attachment.image_url = images[1] if images
+    return attachment
 
   issuesGetRepoIssue = (msg, args) ->
     github = new githubAPI({
