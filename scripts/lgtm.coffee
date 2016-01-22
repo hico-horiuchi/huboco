@@ -44,7 +44,7 @@ module.exports = (robot) ->
       user: args.user
       repo: args.repo
       number: Number(args.id)
-      body: "![#{args.image.id}](#{args.image.link})\nFrom [#{robot.name}](http://#{robot.name}.hiconyan.com/#{robot.name}/info) by #{msg.message.user.name}."
+      body: "![#{args.image.id}](#{args.image.link})\n> From [#{robot.name}](http://#{robot.name}.hiconyan.com/#{robot.name}/info) by #{msg.message.user.name}."
     }, (err, res) ->
       if err?
         return msg.reply("GitHub #{ERR_MSG}\n```\n#{err}\n```")
