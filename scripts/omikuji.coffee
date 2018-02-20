@@ -8,9 +8,9 @@ module.exports = (robot) ->
   ERR_MSG = 'Slack APIの呼出に失敗しました。'
 
   robot.respond /omikuji$/i, (msg) ->
-    members = msg.message.rawMessage._client.channels[msg.message.rawMessage.channel].members
+    members = msg.message.rawMessage.channel.members
     member = members[Math.random() * members.length | 0]
-    url = "https://slack.com/api/users.info?token=#{robot.adapter.client.token}&user=#{member}"
+    url = "https://slack.com/api/users.info?token=#{robot.adapter.client.rtm._token}&user=#{member}"
     msg.http(url).get() (err, res, body) ->
       if err? or res.statusCode isnt 200
         return msg.reply("#{ERR_MSG}\n```\n#{err}\n```")

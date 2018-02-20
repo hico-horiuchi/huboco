@@ -7,7 +7,7 @@
 # Commands:
 #   hubot gh <user>/<repo> <id> - リポジトリのIssueまたはPull Requestの情報を表示
 
-githubAPI = require('node-github')
+githubAPI = require('github')
 moment = require('moment')
 
 module.exports = (robot) ->
@@ -20,6 +20,7 @@ module.exports = (robot) ->
   }
 
   setAttachment = (issue) ->
+    issue = issue.data
     attachment = {
       fallback: "##{issue.number}: #{issue.title}"
       title: "##{issue.number}: #{issue.title}"
@@ -54,8 +55,8 @@ module.exports = (robot) ->
       type: 'oauth'
       token: process.env.HUBOT_GITHUB_ACCESS_TOKEN
     })
-    github.issues.getRepoIssue({
-      user: args.user
+    github.issues.get({
+      owner: args.user
       repo: args.repo
       number: Number(args.id)
     }, (err, res) ->

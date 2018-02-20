@@ -10,7 +10,7 @@
 #   hubot lgtm                    - Imgur の HUBOT_IMGUR_ALBUM_ID からLGTM画像を送信
 #   hubot lgtm <user>/<repo> <id> - リポジトリのIssueまたはPull RequestにLGTM画像をコメント
 
-githubAPI = require('node-github')
+githubAPI = require('github')
 
 module.exports = (robot) ->
   ERR_MSG = 'APIの呼出に失敗しました。'
@@ -41,7 +41,7 @@ module.exports = (robot) ->
       token: process.env.HUBOT_GITHUB_ACCESS_TOKEN
     })
     github.issues.createComment({
-      user: args.user
+      owner: args.owner
       repo: args.repo
       number: Number(args.id)
       body: "![#{args.image.id}](#{args.image.link})\n> From [#{robot.name}](http://#{robot.name}.hiconyan.com/#{robot.name}/info) by #{msg.message.user.name}."
@@ -58,7 +58,7 @@ module.exports = (robot) ->
   robot.respond /lgtm\s+(\S+)\/(\S+)\s+([0-9]+)$/i, (msg) ->
     getAccountImages(msg, {
       callbacks: [issuesCreateComment]
-      user: msg.match[1]
+      owner: msg.match[1]
       repo: msg.match[2]
       id: msg.match[3]
     })
